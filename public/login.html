@@ -1,6 +1,6 @@
 <h1>Login Page</h1>
 <h2>User Login</h2>
-<form class="" ng-submit="site.login(user)">
+<form class="" ng-submit="main.login(user)">
   <div>
     <label for="username">Username</label>
     <input type="text" class="validate" ng-model="user.username">
@@ -13,9 +13,9 @@
 </form>
 <h2>User Registration</h2>
 <div ng-hide='site.success'>
-  <form class="" ng-submit="site.signup(createUser)">
+  <form class="" ng-submit="main.signup(createUser)">
     <label for="email">Email</label>
-    <input type="email" class="validate" ng-model="createUser.email_address">
+    <input type="email" class="validate" ng-model="createUser.email">
     <br>
     <label for="username">Username</label>
     <input type="text" class="validate" ng-model="createUser.username">
