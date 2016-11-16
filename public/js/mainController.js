@@ -6,6 +6,7 @@
     var self = this;
     var rootUrl = "http://localhost:3000";
 
+    //USER SIGNUP
     this.signup = function(user) {
       console.log(user);
       self.signed = user;
@@ -17,7 +18,7 @@
       .then(function(response) {
         console.log(response);
         if (response.data.status === 200) {
-          console.log('User registration successful');
+          console.log('User Registration Successful');
           self.sucess = true;
           self.login(self.signed);
         }
@@ -36,29 +37,33 @@
       })
     }
 
-  // this.login = function(user) {
-  //   return $http ({
-  //     url: `${rootUrl}/users/login`,
-  //     method: 'POST',
-  //     data: {user: user}
-  //   })
-  //   .then(function(response){
-  //     if (response.data.status == 401) {
-  //       failAlert('Unauthorized! Check your username and password!')
-  //       self.user.password = '',
-  //     }
-  //     console.log(response);
-  //     passAlert('<strong>Success!</strong> Hi there, ' + response.data.user.username + '.')
-  //     self.user = response.data.user;
-  //     self.id = response.data.user.id;
-  //     console.log('Token ~>', response.data.token);
-  //     localStorage.setItem('token', JSON.stringify(response.data.token))
-  //     $state.go('profile', {url:'/profile', user: response.data.user})
-  //   })
-  //   .catch(function(err) {
-  //     console.log(err);
-  //   })
-  // }
+  this.login = function(user) {
+    return $http({
+      url: `${rootUrl}/users/login`,
+      method: 'POST',
+      data: {user: user}
+    })
+    .then(function(response){
+      console.log(response);
+      self.user = response.data.user
+      self.id = response.data.user.id
+      console.log('Token ~>', response.data.token);
+      localStorage.setItem('token', JSON.stringify(response.data.token))
+      localStorage.setItem('user', JSON.stringify(response.data.user));
+      $state.go('user', {url:'/user', user: response.data.user});
+    })
+    .catch(function(err) {
+      console.log(err);
+    })
+  }
+
+  this.logout = function(user){
+    localStorage.removeItem('user');
+    localStorage.removeItem('token')
+    $state.go('home', {url: '/'})
+  } // end this.logout
+
+
 
   $http.get(`${rootUrl}/users`)
   .then(function(response) {
