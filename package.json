@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/zarela/concert-freak-ui/issues"
   },
-  "homepage": "https://github.com/zarela/concert-freak-ui#readme"
+  "homepage": "https://github.com/zarela/concert-freak-ui#readme",
+  "dependencies": {
+    "express": "^4.14.0",
+    "morgan": "^1.7.0",
+    "path": "^0.12.7",
+    "serve-favicon": "^2.3.0"
+  }
 }
