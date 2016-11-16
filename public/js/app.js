@@ -10,6 +10,10 @@
       url:'/',
       templateUrl: 'home.html'
     })
+    .state('login', {
+      url:'/login',
+      templateUrl: 'login.html'
+    })
 
     $urlRouterProvider.otherwise('/');
 
