@@ -1,6 +1,5 @@
 (function() {
-  angular
-  .module('concert', ['ui.router'])
+  angular.module('concert', ['ui.router'])
   .config(MainRouter);
 
   MainRouter.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
@@ -8,7 +7,7 @@
   function MainRouter($stateProvider, $urlRouterProvider, $locationProvider) {
     $stateProvider
     .state('home', {
-      url:'/'
+      url:'/',
       templateUrl: 'home.html'
     })
 
