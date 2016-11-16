@@ -37,39 +37,41 @@
       })
     }
 
-  this.login = function(user) {
-    return $http({
-      url: `${rootUrl}/users/login`,
-      method: 'POST',
-      data: {user: user}
-    })
-    .then(function(response){
+    //USER LOGIN
+    this.login = function(user) {
+      return $http({
+        url: `${rootUrl}/users/login`,
+        method: 'POST',
+        data: {user: user}
+      })
+      .then(function(response){
+        console.log(response);
+        self.user = response.data.user
+        self.id = response.data.user.id
+        console.log('Token ~>', response.data.token);
+        localStorage.setItem('token', JSON.stringify(response.data.token))
+        localStorage.setItem('user', JSON.stringify(response.data.user));
+        $state.go('user', {url:'/user', user: response.data.user});
+      })
+      .catch(function(err) {
+        console.log(err);
+      })
+    }
+
+    //USER LOGOUT
+    this.logout = function(user){
+      localStorage.removeItem('user');
+      localStorage.removeItem('token')
+      $state.go('home', {url: '/'})
+    } // end this.logout
+
+
+
+    $http.get(`${rootUrl}/users`)
+    .then(function(response) {
       console.log(response);
-      self.user = response.data.user
-      self.id = response.data.user.id
-      console.log('Token ~>', response.data.token);
-      localStorage.setItem('token', JSON.stringify(response.data.token))
-      localStorage.setItem('user', JSON.stringify(response.data.user));
-      $state.go('user', {url:'/user', user: response.data.user});
+      self.users = response.data.users
     })
-    .catch(function(err) {
-      console.log(err);
-    })
-  }
-
-  this.logout = function(user){
-    localStorage.removeItem('user');
-    localStorage.removeItem('token')
-    $state.go('home', {url: '/'})
-  } // end this.logout
-
-
-
-  $http.get(`${rootUrl}/users`)
-  .then(function(response) {
-    console.log(response);
-    self.users = response.data.users
-  })
 
 
   } //end
