@@ -1,0 +1,38 @@
+<div class="empty"></div>
+
+<div class="container center">
+  <h2>User Login</h2>
+  <form class="col s6" ng-submit="main.login(user)">
+    <div>
+      <label for="username">Username</label>
+      <input type="text" class="validate" ng-model="user.username">
+      <br>
+      <label for="password">Password</label>
+      <input type="password" class="validate" ng-model="user.password">
+      <br>
+      <button class="#311b92 deep-purple darken-4 btn" type="submit" name="action">Login</button>
+    </div>
+  </form>
+</div>
+
+<br>
+
+<div class="container center">
+  <h2>User Registration</h2>
+  <div ng-hide='main.success'>
+    <form class="col s6" ng-submit="main.signup(createUser)">
+      <label for="email">Email</label>
+      <input type="email" class="validate" ng-model="createUser.email">
+      <br>
+      <label for="username">Username</label>
+      <input type="text" class="validate" ng-model="createUser.username">
+      <br>
+      <label for="password">Password</label>
+      <input type="password" class="validate" ng-model="createUser.password">
+      <br>
+      <button class="#311b92 deep-purple darken-4 btn" type="submit" name="action">Register</button>
+    </form>
+  </div>
+</div>
+
+<div class="empty"></div>

@@ -8,15 +8,23 @@
     $stateProvider
     .state('home', {
       url:'/',
-      templateUrl: 'home.html'
+      templateUrl: '/partials/home.html'
     })
     .state('login', {
       url:'/login',
-      templateUrl: 'login.html'
+      templateUrl: '/partials/login.html'
     })
     .state('user', {
       url:'/user',
-      templateUrl: 'user.html'
+      templateUrl: '/partials/user.html'
+    })
+    .state('events', {
+      url:'/events',
+      templateUrl: '/partials/events.html'
+    })
+    .state('new', {
+      url:'/new',
+      templateUrl: '/partials/new.html'
     })
 
     $urlRouterProvider.otherwise('/');
@@ -28,4 +36,4 @@
 
   } //end
 })()
-console.log("Controller wired")
+console.log("Router Wired")

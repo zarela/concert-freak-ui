@@ -1,0 +1,24 @@
+@viewport{
+  zoom: 1.0;
+  width: device-width;
+}
+
+.empty{
+  height: 80px;
+}
+
+body{
+  background-color: papayawhip;
+}
+
+.btn{
+  border-radius: 5px;
+}
+
+input{
+  text-align: center;
+}
+
+#logo{
+  padding-left: .3em;
+}

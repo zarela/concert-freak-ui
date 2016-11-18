@@ -2,7 +2,7 @@
   angular.module('concert')
   .controller('MainCtrl', MainCtrl);
 
-  function MainCtrl($http, $state, $stateParams){
+  function MainCtrl($http, $state, $scope){
     var self = this;
     var rootUrl = "http://localhost:3000";
 
@@ -37,6 +37,13 @@
       })
     }
 
+    //ALL USERS
+    $http.get(`${rootUrl}/users`)
+    .then(function(response) {
+      console.log(response);
+      self.users = response.data.users
+    })
+
     //USER LOGIN
     this.login = function(user) {
       return $http({
@@ -53,6 +60,16 @@
         localStorage.setItem('user', JSON.stringify(response.data.user));
         $state.go('user', {url:'/user', user: response.data.user});
       })
+      .then(function(response) {
+        return $http({
+          url: `${rootUrl}/users/${self.id}/events`,
+          method: 'GET'
+        })
+      })
+      .then(function(response){
+        console.log(response);
+        self.events = response.data.events;
+      })
       .catch(function(err) {
         console.log(err);
       })
@@ -61,18 +78,28 @@
     //USER LOGOUT
     this.logout = function(user){
       localStorage.removeItem('user');
-      localStorage.removeItem('token')
+      localStorage.removeItem('token');
       $state.go('home', {url: '/'})
     } // end this.logout
 
 
+    //CREATING EVENTS
+    this.
 
-    $http.get(`${rootUrl}/users`)
-    .then(function(response) {
-      console.log(response);
-      self.users = response.data.users
-    })
 
+
+
+    // $http.get(`${rootUrl}/events`)
+    // .then(function(response) {
+    //   console.log(response);
+    //   self.events = response.data
+    // })
+
+    // $http.get(`${rootUrl}/events`)
+    // .then(function(response) {
+    //     self.events = response.data;
+    //     console.log(self.events);
+    // });
 
   } //end
 })()
