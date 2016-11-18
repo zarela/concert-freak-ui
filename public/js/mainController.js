@@ -5,7 +5,7 @@
   function MainCtrl($http, $state, $scope){
     var self = this;
     // var rootUrl = "http://localhost:3000";
-    var rootUrl = "https://concert-freak-api.herokuapp.com/";
+    var rootUrl = "https://concert-freak-api.herokuapp.com";
 
     //USER SIGNUP
     this.signup = function(user) {
