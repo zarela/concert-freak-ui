@@ -4,8 +4,8 @@
 
   function MainCtrl($http, $state, $scope){
     var self = this;
-    // var rootUrl = "http://localhost:3000";
-    var rootUrl = "https://concert-freak-api.herokuapp.com";
+    var rootUrl = "http://localhost:3000";
+    // var rootUrl = "https://concert-freak-api.herokuapp.com";
 
     //USER SIGNUP
     this.signup = function(user) {
@@ -61,16 +61,16 @@
         localStorage.setItem('user', JSON.stringify(response.data.user));
         $state.go('user', {url:'/user', user: response.data.user});
       })
-      .then(function(response) {
-        return $http({
-          url: `${rootUrl}/users/${self.id}/events`,
-          method: 'GET'
-        })
-      })
-      .then(function(response){
-        console.log(response);
-        self.events = response.data.events;
-      })
+      // .then(function(response) {
+      //   return $http({
+      //     url: `${rootUrl}/users/${self.id}/events`,
+      //     method: 'GET'
+      //   })
+      // })
+      // .then(function(response){
+      //   console.log(response);
+      //   self.events = response.data.events;
+      // })
       .catch(function(err) {
         console.log(err);
       })
@@ -84,23 +84,13 @@
     } // end this.logout
 
 
-    //CREATING EVENTS
-
-
-
-
-
-    // $http.get(`${rootUrl}/events`)
-    // .then(function(response) {
-    //   console.log(response);
-    //   self.events = response.data
-    // })
-
-    // $http.get(`${rootUrl}/events`)
-    // .then(function(response) {
-    //     self.events = response.data;
-    //     console.log(self.events);
-    // });
+    //SHOW ALL EVENTS
+    $http.get(`${rootUrl}/users/user_id/events`)
+    .then(function(response) {
+        self.events = response.data;
+        console.log(self.events);
+        $state.go('events', {url:'/events', events: response.data});
+    });
 
   } //end
 })()
