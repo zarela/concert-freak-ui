@@ -59,18 +59,14 @@
         console.log('Token ~>', response.data.token);
         localStorage.setItem('token', JSON.stringify(response.data.token))
         localStorage.setItem('user', JSON.stringify(response.data.user));
-        $state.go('user', {url:'/user', user: response.data.user});
+        //GETTING EVENTS OF INTEREST
+        return $http.get(`${rootUrl}/users/${self.id}/interests`);
       })
-      // .then(function(response) {
-      //   return $http({
-      //     url: `${rootUrl}/users/${self.id}/events`,
-      //     method: 'GET'
-      //   })
-      // })
-      // .then(function(response){
-      //   console.log(response);
-      //   self.events = response.data.events;
-      // })
+      .then(function(data){
+        self.myEvents = data;
+        $state.go('user', {url:'/user', user: data.data.user});
+        console.log(data);
+      })
       .catch(function(err) {
         console.log(err);
       })
@@ -83,9 +79,20 @@
       $state.go('home', {url: '/'})
     } // end this.logout
 
+    /*
+      thid.addToMyInterests = function(id){
+
+      // update Interests table on SERVER
+      //something like POST to /users/:user_id/interests
+
+      // update self.myInterests
+
+
+    }
+    */
 
     //SHOW ALL EVENTS
-    $http.get(`${rootUrl}/users/user_id/events`)
+    $http.get(`${rootUrl}/events`)
     .then(function(response) {
         self.events = response.data;
         console.log(self.events);

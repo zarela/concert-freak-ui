@@ -1,18 +1,16 @@
 <div class="container center">
   <h3>Events page</h3>
+  <input class="search" type="text" name="search" placeholder="Search" ng-model="searchBox">
 </div>
 
+
 <div class="container center">
-  <div ng-repeat="event in main.events">
+  <div ng-repeat="event in main.events | filter: searchBox">
     {{event.artist}}<br>
     {{event.date}}<br>
     {{event.price}}<br>
+    {{event.venue_id}}<br>{{event.venue_name}}
     {{event.url}}<br><br>
+    <!-- button ng-click="main.addToMyInterests(event.id)"-->
   </div>
 </div>
-<!-- <div ng-repeat="event in main.events">
-  {{event.artist}}<br>
-  {{event.date}}<br>
-  {{event.price}}<br>
-  {{event.url}}<br>
-</div> -->
