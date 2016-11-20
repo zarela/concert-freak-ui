@@ -59,7 +59,7 @@
         console.log('Token ~>', response.data.token);
         localStorage.setItem('token', JSON.stringify(response.data.token))
         localStorage.setItem('user', JSON.stringify(response.data.user));
-        //GETTING EVENTS OF INTEREST
+        //GETTING RSVP EVENTS
         // return $http.get(`${rootUrl}/users/${self.id}/events`);
         return $http.get(`${rootUrl}/users`);
       })
@@ -126,6 +126,7 @@
     function addEvent(newEvent){
       console.log(newEvent);
       $http.post(`${rootUrl}/events`, newEvent)
+      // $http.post(`${rootUrl}/users/${user._id}/events`, newEvent)
       .then(function(response){
         // console.log(response)
         self.event = response.data.event;
