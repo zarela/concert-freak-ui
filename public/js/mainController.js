@@ -100,7 +100,8 @@
     .then(function(response) {
         self.events = response.data;
         console.log(self.events);
-        $state.go('events', {url:'/events', events: response.data});
+        //Don't use $state.go
+        // $state.go('events', {url:'/events', events: response.data});
     });
 
     this.isCreating = false;
@@ -123,25 +124,24 @@
 
 
     function addEvent(newEvent){
-    console.log(newEvent);
-
-  // $http.post('/jobs', newJob) //Used to add job on homepage
-    $http.post(`${rootUrl}/events`, newEvent)
-    .then(function(response){
-      // console.log(response)
-      self.event = response.data.event;
-      //Clearing form ''
-      newEvent.artist = '';
-      newEvent.date = '';
-      newEvent.price = '';
-      newEvent.url = false;
-      newEvent.venue = '';
-      $state.go('events', {url: '/events'});
-    })
-    .catch(function(err){
-      console.log(err)
-    });
-  }
+      console.log(newEvent);
+      $http.post(`${rootUrl}/events`, newEvent)
+      .then(function(response){
+        // console.log(response)
+        self.event = response.data.event;
+        //Clearing form ''
+        newEvent.artist = '';
+        newEvent.date = '';
+        newEvent.price = '';
+        newEvent.url = '';
+        newEvent.location = '';
+        // $state.go('events', {url: '/events'});
+        $state.go('events', {url:'/events', events: response.data});
+      })
+      .catch(function(err){
+        console.log(err)
+      });
+    }
 
   //Public Methods
   //==============================
