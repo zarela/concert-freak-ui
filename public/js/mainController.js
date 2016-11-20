@@ -98,8 +98,6 @@
     // EVENTS STATE
     //=============
     // SHOWING ALL THE EVENTS
-    // self.event = $event;
-
     $http.get(`${rootUrl}/events`)
     // $http.get(`${rootUrl}/users/${self.id}/events`)
     .then(function(response) {
@@ -170,34 +168,14 @@
       var indexToRemove = self.events.findIndex(function(element){
         return element.id=== id;
       });
-
-      // ['fish', 'cats']
-
       self.events.splice(indexToRemove, 1);
     })
   }
 
-  // function deleteEvent(id){
-  //   $http.get(`${rootUrl}/events`)
-  //   .then(function(response){
-  //     self.events = response.data;
-  //     return $http.get(`${rootUrl}/events`);
-  //   })
-  //   .then(function(response){
-  //     $http.delete(`/events/${id}`)
-  //     console.log("Deleted event");
-  //     self.events = response.data;
-  //   })
-  // }
-
-
-
-
-
   //UPDATE EVENT
-  function editEvent(event){
-    console.log('editing')
-    $http.put(`/events/${event._id}`, event)
+  function editEvent(id){
+    console.log('Hello from editing', id)
+    $http.put(`${rootUrl}/events/${id}`)
     .then(function(response){
       console.log(response);
       self.events = response.data.events;
@@ -214,8 +192,6 @@
    this.setEventToEdit = setEventToEdit;
    this.editEvent = editEvent;
    this.reset = reset;
-
-
 
   } //end
 })()

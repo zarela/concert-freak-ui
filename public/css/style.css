@@ -9,6 +9,7 @@
 
 body{
   background-color: papayawhip;
+  color:white;
 }
 
 .btn{
@@ -31,6 +32,7 @@ input{
 }
 
 .event {
+  background-color: white;
   margin: 5px;
   color: #555;
   font-size: 14px;
@@ -55,4 +57,9 @@ input{
 
 .search[type=text]:focus {
     width: 40%;
+}
+
+#home {
+  background: url('http://i.imgur.com/0YCVhf1.jpg');
+  background-size: cover;
 }
