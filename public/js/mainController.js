@@ -2,6 +2,8 @@
   angular.module('concert')
   .controller('MainCtrl', MainCtrl);
 
+  MainCtrl.$inject = ['$http', '$state', '$scope'];
+
   function MainCtrl($http, $state, $scope){
     var self = this;
     var rootUrl = "http://localhost:3000";
@@ -61,7 +63,8 @@
         localStorage.setItem('user', JSON.stringify(response.data.user));
         //GETTING RSVP EVENTS
         // return $http.get(`${rootUrl}/users/${self.id}/events`);
-        return $http.get(`${rootUrl}/users`);
+        // return $http.get(`${rootUrl}/users`);
+        return $http.get(`${rootUrl}/events`);
       })
       .then(function(data){
         self.myEvents = data;
@@ -95,6 +98,8 @@
     // EVENTS STATE
     //=============
     // SHOWING ALL THE EVENTS
+    // self.event = $event;
+
     $http.get(`${rootUrl}/events`)
     // $http.get(`${rootUrl}/users/${self.id}/events`)
     .then(function(response) {
@@ -105,49 +110,110 @@
     });
 
     this.isCreating = false;
-    // this.isEditing = false;
-    // this.editedJob = null;
+    this.isEditing = false;
+    this.editedEvent = null;
 
     function startCreating(){
       this.isCreating = true;
       this.isEditing = false;
     }
 
-    // function startEditing(){
-    //   this.isCreating = false;
-    //   this.isEditing = true;
-    // }
+    function startEditing(){
+      this.isCreating = false;
+      this.isEditing = true;
+    }
 
-    // function setJobToEdit(job){
-    //   this.editedJob = job;
-    // }
+    function setEventToEdit(event){
+      this.editedEvent = event;
+    }
 
+    function reset(event){
+      this.isCreating = false;
+      this.isEditing = false;
+    }
 
+    //CRUD for LOGIC FOR EVENT
+    //ADD A NEW EVENT
     function addEvent(newEvent){
       console.log(newEvent);
+      // $http.post(`${rootUrl}/events`)
       $http.post(`${rootUrl}/events`, newEvent)
       // $http.post(`${rootUrl}/users/${user._id}/events`, newEvent)
       .then(function(response){
         // console.log(response)
         self.event = response.data.event;
+        // self.events.push(self.event); //Yaaay
         //Clearing form ''
         newEvent.artist = '';
         newEvent.date = '';
         newEvent.price = '';
         newEvent.url = '';
         newEvent.location = '';
+
         // $state.go('events', {url: '/events'});
+        self.events.push(self.event);
         $state.go('events', {url:'/events', events: response.data});
+        // self.events.push(self.event);
       })
       .catch(function(err){
         console.log(err)
       });
     }
 
+   //DELETE EVENT
+   function deleteEvent(id){
+    console.log("Hello from id", id);
+    $http.delete(`${rootUrl}/events/${id}`)
+    .then(function(response){
+      console.log(response);
+      // self.events = response.data.events
+      var indexToRemove = self.events.findIndex(function(element){
+        return element.id=== id;
+      });
+
+      // ['fish', 'cats']
+
+      self.events.splice(indexToRemove, 1);
+    })
+  }
+
+  // function deleteEvent(id){
+  //   $http.get(`${rootUrl}/events`)
+  //   .then(function(response){
+  //     self.events = response.data;
+  //     return $http.get(`${rootUrl}/events`);
+  //   })
+  //   .then(function(response){
+  //     $http.delete(`/events/${id}`)
+  //     console.log("Deleted event");
+  //     self.events = response.data;
+  //   })
+  // }
+
+
+
+
+
+  //UPDATE EVENT
+  function editEvent(event){
+    console.log('editing')
+    $http.put(`/events/${event._id}`, event)
+    .then(function(response){
+      console.log(response);
+      self.events = response.data.events;
+    })
+    this.isEditing = false;
+  }
+
   //Public Methods
   //==============================
    this.startCreating = startCreating;
    this.addEvent = addEvent;
+   this.deleteEvent = deleteEvent;
+   this.startEditing = startEditing;
+   this.setEventToEdit = setEventToEdit;
+   this.editEvent = editEvent;
+   this.reset = reset;
 
 
 

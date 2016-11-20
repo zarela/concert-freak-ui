@@ -1,3 +1,5 @@
+<section>
+
 <div class="container center">
   <h3>My Events</h3>
   <input class="search" type="text" name="search" placeholder="Search" ng-model="searchBox">
@@ -17,6 +19,44 @@
     Location: {{event.location}}<br>
     Event URL:  <a href="http://{{event.url}}" target="_blank"> {{event.url}}</a><br><br>
     <button class="#311b92 deep-purple darken-4 btn" ng-click="main.addToMyInterests(event.id)">RSVP</button>
+    <button class="#311b92 deep-purple darken-4 btn"  ng-click="main.setEventToEdit(event); main.startEditing()">EDIT</button>
+    <button class="#311b92 deep-purple darken-4 btn" ng-click="main.deleteEvent(event.id)">DELETE</button>
+
     <!-- button ng-click="main.addToMyInterests(event.id)"-->
   </div>
 </div>
+
+
+<div class="nav" ng-hide="main.isEditing" ng-show="main.isCreating">
+  <!-- <button ng-click="main.startCreating()">Add Job</button> -->
+  <br>
+  <button  ui-sref="new" ng-click="main.startCreating()">Add Event</button>
+</div>
+
+<div class="form" ng-show="main.isEditing">
+  <form action="#" ng-submit="main.editEvent(main.editedEvent)">
+    <div>
+      <label for="artist">Artist</label>
+      <input type="text" ng-model="main.editedEvent.artist">
+    </div>
+    <div>
+      <label for="date">Date</label>
+      <input type="text" ng-model="main.editedEvent.date">
+    </div>
+    <div>
+      <label for="price">Price</label>
+      <input type="text" ng-model="main.editedEvent.price">
+    </div>
+    <div>
+      <label for="location">Location</label>
+      <input type="text" ng-model="main.editedEvent.location">
+    </div>
+    <div>
+      <label for="url">Url</label>
+      <input type="text" ng-model="main.editedEvent.url">
+    </div>
+    <br>
+    <button class="#311b92 deep-purple darken-4 btn" type="submit">UPDATE</button>
+  </form>
+</div>
+</section>
