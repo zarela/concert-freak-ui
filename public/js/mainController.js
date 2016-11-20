@@ -60,7 +60,8 @@
         localStorage.setItem('token', JSON.stringify(response.data.token))
         localStorage.setItem('user', JSON.stringify(response.data.user));
         //GETTING EVENTS OF INTEREST
-        return $http.get(`${rootUrl}/users/${self.id}/interests`);
+        // return $http.get(`${rootUrl}/users/${self.id}/events`);
+        return $http.get(`${rootUrl}/users`);
       })
       .then(function(data){
         self.myEvents = data;
@@ -91,13 +92,63 @@
     }
     */
 
-    //SHOW ALL EVENTS
+    // EVENTS STATE
+    //=============
+    // SHOWING ALL THE EVENTS
     $http.get(`${rootUrl}/events`)
+    // $http.get(`${rootUrl}/users/${self.id}/events`)
     .then(function(response) {
         self.events = response.data;
         console.log(self.events);
         $state.go('events', {url:'/events', events: response.data});
     });
+
+    this.isCreating = false;
+    // this.isEditing = false;
+    // this.editedJob = null;
+
+    function startCreating(){
+      this.isCreating = true;
+      this.isEditing = false;
+    }
+
+    // function startEditing(){
+    //   this.isCreating = false;
+    //   this.isEditing = true;
+    // }
+
+    // function setJobToEdit(job){
+    //   this.editedJob = job;
+    // }
+
+
+    function addEvent(newEvent){
+    console.log(newEvent);
+
+  // $http.post('/jobs', newJob) //Used to add job on homepage
+    $http.post(`${rootUrl}/events`, newEvent)
+    .then(function(response){
+      // console.log(response)
+      self.event = response.data.event;
+      //Clearing form ''
+      newEvent.artist = '';
+      newEvent.date = '';
+      newEvent.price = '';
+      newEvent.url = false;
+      newEvent.venue = '';
+      $state.go('events', {url: '/events'});
+    })
+    .catch(function(err){
+      console.log(err)
+    });
+  }
+
+  //Public Methods
+  //==============================
+   this.startCreating = startCreating;
+   this.addEvent = addEvent;
+
+
 
   } //end
 })()

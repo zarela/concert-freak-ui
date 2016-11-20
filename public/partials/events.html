@@ -1,16 +1,24 @@
 <div class="container center">
-  <h3>Events page</h3>
+  <h3>My Events</h3>
   <input class="search" type="text" name="search" placeholder="Search" ng-model="searchBox">
+</div>
+<br><br>
+
+<div class="nav" ng-hide="main.isEditing" ng-show="main.isCreating">
+  <br>
+  <button class="#311b92 deep-purple darken-4 btn" ui-sref="new" ng-click="main.startCreating()">Add New Event</button>
 </div>
 
 
-<div class="container center">
-  <div ng-repeat="event in main.events | filter: searchBox">
-    {{event.artist}}<br>
-    {{event.date}}<br>
-    {{event.price}}<br>
-    {{event.venue_id}}<br>{{event.venue_name}}
-    {{event.url}}<br><br>
+<div class="container center events">
+<!-- <div class="center events"> -->
+  <div class="event" ng-repeat="event in main.events | filter: searchBox">
+    Artist: {{event.artist}}<br>
+    Event Date: {{event.date}}<br>
+    Ticket Price: ${{event.price}}<br>
+    Event Venue: {{event.venue_id}}<br>{{event.venue_name}}
+    Event URL:  <a href="http://{{event.url}}" target="_blank"> {{event.url}}</a><br><br>
+    <button class="#311b92 deep-purple darken-4 btn" ng-click="main.addToMyInterests(event.id)">RSVP</button>
     <!-- button ng-click="main.addToMyInterests(event.id)"-->
   </div>
 </div>
