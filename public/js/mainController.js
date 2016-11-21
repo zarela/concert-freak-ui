@@ -62,12 +62,12 @@
         localStorage.setItem('token', JSON.stringify(response.data.token))
         localStorage.setItem('user', JSON.stringify(response.data.user));
         //GETTING RSVP EVENTS
-        return $http.get(`${rootUrl}/users/${self.id}/rsvps`);
-        // return $http.get(`${rootUrl}/users`);
+        // return $http.get(`${rootUrl}/users/${self.id}/rsvps`);
+        return $http.get(`${rootUrl}/users`);
         // return $http.get(`${rootUrl}/events`); //********This works
       })
       .then(function(data){
-        self.myRsvpEvents = data;
+        // self.myRsvpEvents = data;
         $state.go('user', {url:'/user', user: data.data.user});
         console.log(data);
       })
@@ -86,7 +86,8 @@
     //Adding RSVP
     this.addToMyRsvps = function(id){
       console.log("Hello from RSVP", id);
-      $http.post (`${rootUrl}/users/${self.id}/rsvps`, id)
+      localStorage.getItem('token');
+      $http.post (`${rootUrl}/users/${self.id}/rsvps`, {rsvp: id})
       .then(function(response){
         console.log("From ADDING RSVPS", response);
       })
