@@ -129,6 +129,7 @@
     function startCreating(){
       this.isCreating = true;
       this.isEditing = false;
+
     }
 
     function startEditing(){
@@ -151,31 +152,14 @@
       $http.post(`${rootUrl}/events`, newEvent)
       // $http.post(`${rootUrl}/users/${user._id}/events`, newEvent)
       .then(function(response){
-        console.log(response);
+        console.log("Response", response);
         self.event = response.data.event;
-        // self.events.push(self.event); //************
-        //Clearing form ''
-        newEvent.artist = '';
-        newEvent.date = '';
-        newEvent.price = '';
-        newEvent.url = '';
-        newEvent.location = '';
-
-        // $state.go('events', {url: '/events'});
         self.events.push(newEvent);
-        // $state.go('events', {url:`${rootUrl}/events`, events: response.data});
+        //Clearing form ''
+        console.log("Clearing form");
+        self.newEvent ="";
         $state.go('events', {url:'events', events: response.data});
-        // self.events.push(newEvent);
-        // $state.go('events', {url:`${rootUrl}/events`, events: response.data},{reload: true});
       })
-      // .then(function(response){
-      //
-      //   newEvent.artist = '';
-      //   newEvent.date = '';
-      //   newEvent.price = '';
-      //   newEvent.url = '';
-      //   newEvent.location = '';
-      // })
       .catch(function(err){
         console.log(err)
       });
@@ -198,26 +182,19 @@
   //UPDATE EVENT
   function editEvent(event){
     console.log('Hello from editing',event)
-    $http.put(`${rootUrl}/events/${id}`)
+    $http.put(`${rootUrl}/events/${event.id}`, event)
     .then(function(response){
+      // reset();
       console.log(response);
-      self.events = response.data.events;
+      // self.events = response.data.events;
+      self.isEditing = false;
+      $state.go('events');
     })
-    this.isEditing = false;
-  }
+    .catch(function(err){
+      console.log(err)
+    });
 
-  // this.editEvent = function(id, updatedEvent){
-  //   console.log('Hello from editing', id);
-  //   return $http ({
-  //     url: `${rootUrl}/events/${id}`,
-  //     method: 'PUT',
-  //     data: {update: updatedEvent}
-  //   })
-  //   .then(function(response){
-  //     console.log(response);
-  //     self.events = response.data.events;
-  //   })
-  // }
+  }
 
   //Public Methods
   //==============================
