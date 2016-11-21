@@ -62,12 +62,12 @@
         localStorage.setItem('token', JSON.stringify(response.data.token))
         localStorage.setItem('user', JSON.stringify(response.data.user));
         //GETTING RSVP EVENTS
-        // return $http.get(`${rootUrl}/users/${self.id}/events`);
+        return $http.get(`${rootUrl}/users/${self.id}/rsvps`);
         // return $http.get(`${rootUrl}/users`);
-        return $http.get(`${rootUrl}/events`);
+        // return $http.get(`${rootUrl}/events`); //********This works
       })
       .then(function(data){
-        self.myEvents = data;
+        self.myRsvpEvents = data;
         $state.go('user', {url:'/user', user: data.data.user});
         console.log(data);
       })
@@ -83,6 +83,23 @@
       $state.go('home', {url: '/'})
     } // end this.logout
 
+    //Adding RSVP
+    this.addToMyRsvps = function(id){
+      console.log("Hello from RSVP", id);
+      $http.post (`${rootUrl}/users/${self.id}/rsvps`, id)
+      .then(function(response){
+        console.log("From ADDING RSVPS", response);
+      })
+
+    }
+
+    //SHOWING ALL USERS RSVPS
+    // $http.get(`${rootUrl}/users/${self.id}/rsvps`)
+    // .then(function(response){
+    //   self.rsvps = response.data;
+    //   console.log(self.rsvps);
+    // })
+
     /*
       thid.addToMyInterests = function(id){
 
@@ -90,8 +107,6 @@
       //something like POST to /users/:user_id/interests
 
       // update self.myInterests
-
-
     }
     */
 
@@ -130,17 +145,15 @@
       this.isEditing = false;
     }
 
-    //CRUD for LOGIC FOR EVENT
     //ADD A NEW EVENT
     function addEvent(newEvent){
       console.log(newEvent);
-      // $http.post(`${rootUrl}/events`)
       $http.post(`${rootUrl}/events`, newEvent)
       // $http.post(`${rootUrl}/users/${user._id}/events`, newEvent)
       .then(function(response){
-        // console.log(response)
+        console.log(response);
         self.event = response.data.event;
-        // self.events.push(self.event); //Yaaay
+        // self.events.push(self.event); //************
         //Clearing form ''
         newEvent.artist = '';
         newEvent.date = '';
@@ -149,10 +162,20 @@
         newEvent.location = '';
 
         // $state.go('events', {url: '/events'});
-        self.events.push(self.event);
-        $state.go('events', {url:'/events', events: response.data});
-        // self.events.push(self.event);
+        self.events.push(newEvent);
+        // $state.go('events', {url:`${rootUrl}/events`, events: response.data});
+        $state.go('events', {url:'events', events: response.data});
+        // self.events.push(newEvent);
+        // $state.go('events', {url:`${rootUrl}/events`, events: response.data},{reload: true});
       })
+      // .then(function(response){
+      //
+      //   newEvent.artist = '';
+      //   newEvent.date = '';
+      //   newEvent.price = '';
+      //   newEvent.url = '';
+      //   newEvent.location = '';
+      // })
       .catch(function(err){
         console.log(err)
       });
@@ -173,8 +196,8 @@
   }
 
   //UPDATE EVENT
-  function editEvent(id){
-    console.log('Hello from editing', id)
+  function editEvent(event){
+    console.log('Hello from editing',event)
     $http.put(`${rootUrl}/events/${id}`)
     .then(function(response){
       console.log(response);
@@ -182,6 +205,19 @@
     })
     this.isEditing = false;
   }
+
+  // this.editEvent = function(id, updatedEvent){
+  //   console.log('Hello from editing', id);
+  //   return $http ({
+  //     url: `${rootUrl}/events/${id}`,
+  //     method: 'PUT',
+  //     data: {update: updatedEvent}
+  //   })
+  //   .then(function(response){
+  //     console.log(response);
+  //     self.events = response.data.events;
+  //   })
+  // }
 
   //Public Methods
   //==============================
