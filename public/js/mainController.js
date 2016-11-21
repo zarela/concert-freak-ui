@@ -81,7 +81,7 @@
       localStorage.removeItem('user');
       localStorage.removeItem('token');
       $state.go('home', {url: '/'})
-    } // end this.logout
+    }
 
     //Adding RSVP
     this.addToMyRsvps = function(id){
@@ -90,15 +90,7 @@
       .then(function(response){
         console.log("From ADDING RSVPS", response);
       })
-
     }
-
-    //SHOWING ALL USERS RSVPS
-    // $http.get(`${rootUrl}/users/${self.id}/rsvps`)
-    // .then(function(response){
-    //   self.rsvps = response.data;
-    //   console.log(self.rsvps);
-    // })
 
     /*
       thid.addToMyInterests = function(id){
@@ -118,8 +110,6 @@
     .then(function(response) {
         self.events = response.data;
         console.log(self.events);
-        //Don't use $state.go
-        // $state.go('events', {url:'/events', events: response.data});
     });
 
     this.isCreating = false;
@@ -129,7 +119,6 @@
     function startCreating(){
       this.isCreating = true;
       this.isEditing = false;
-
     }
 
     function startEditing(){
@@ -181,10 +170,9 @@
 
   //UPDATE EVENT
   function editEvent(event){
-    console.log('Hello from editing',event)
+    // console.log('Hello from editing',event)
     $http.put(`${rootUrl}/events/${event.id}`, event)
     .then(function(response){
-      // reset();
       console.log(response);
       // self.events = response.data.events;
       self.isEditing = false;
