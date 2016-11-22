@@ -6,36 +6,8 @@
 
   function MainCtrl($http, $state, $scope){
     var self = this;
-    var rootUrl = "http://localhost:3000";
-    // var rootUrl = "https://concert-freak-api.herokuapp.com";
-
-    //*************
-    // this.currentUser = function() {
-    //   return $http({
-    //     url: `${rootUrl}/users/current-user`,
-    //     method: 'GET',
-    //     headers: {'Authorization': `Bearer ${JSON.stringify(localStorage.getItem('token'))}`}
-    //   })
-    //   .then(function(response) {
-    //     self.user = response.data.user;
-    //     self.id = response.data.user.id;
-    //     console.log(self.user, 'currentUser function');
-    //   })
-    //   .then(function(response) {
-    //     return $http({
-    //       url: `${rootUrl}/users/${self.id}/rsvps`,
-    //       method: 'GET'
-    //     })
-    //   })
-    //   .then(function(response) {
-    //     console.log(response);
-    //     self.rsvps = response.data.rsvps;
-    //   })
-    //   .catch(function(err) {
-    //     console.log(err);
-    //   })
-    // }
-    //*************
+    // var rootUrl = "http://localhost:3000";
+    var rootUrl = "https://concert-freak-api.herokuapp.com";
 
     //USER SIGNUP
     this.signup = function(user) {
