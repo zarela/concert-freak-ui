@@ -26,32 +26,32 @@
 
   <div class="container center">
     <div class="nav" ng-hide="main.isEditing" ng-show="main.isCreating">
-      <br>
-        <!-- This button is the same as above -->
-        <!-- <button class="#311b92 deep-purple darken-4 btn" ui-sref="new" ng-click="main.startCreating()">CREATE EVENT</button> -->
+    <br>
     </div>
-
+    <br>
     <div class="form" ng-show="main.isEditing">
       <form ng-submit="main.editEvent(main.editedEvent)">
-        <div>
-          <label for="artist">Artist</label>
-          <input type="text" ng-model="main.editedEvent.artist">
-        </div>
-        <div>
-          <label for="date">Date</label>
-          <input type="text" ng-model="main.editedEvent.date">
-        </div>
-        <div>
-          <label for="price">Price</label>
-          <input type="text" ng-model="main.editedEvent.price">
-        </div>
-        <div>
-          <label for="location">Location</label>
-          <input type="text" ng-model="main.editedEvent.location">
-        </div>
-        <div>
-          <label for="url">Url</label>
-          <input type="text" ng-model="main.editedEvent.url">
+        <div class="form-trans">
+          <div>
+            <label for="artist">Artist</label>
+            <input type="text" ng-model="main.editedEvent.artist">
+          </div>
+          <div>
+            <label for="date">Date</label>
+            <input type="text" ng-model="main.editedEvent.date">
+          </div>
+          <div>
+            <label for="price">Price</label>
+            <input type="text" ng-model="main.editedEvent.price">
+          </div>
+          <div>
+            <label for="location">Location</label>
+            <input type="text" ng-model="main.editedEvent.location">
+          </div>
+          <div>
+            <label for="url">Url</label>
+            <input type="text" ng-model="main.editedEvent.url">
+          </div>
         </div>
         <br>
         <button class="#311b92 deep-purple darken-4 btn" type="submit">UPDATE</button>

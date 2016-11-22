@@ -4,11 +4,13 @@
   <h2>User Login</h2>
   <form class="col s6" ng-submit="main.login(user)">
     <div>
-      <label for="username">Username</label>
-      <input type="text" class="validate" ng-model="user.username">
-      <br>
-      <label for="password">Password</label>
-      <input type="password" class="validate" ng-model="user.password">
+      <div class="form-trans">
+        <label for="username">Username</label>
+        <input type="text" class="validate" ng-model="user.username">
+        <br>
+        <label for="password">Password</label>
+        <input type="password" class="validate" ng-model="user.password">
+      </div>
       <br>
       <button class="#311b92 deep-purple darken-4 btn" type="submit" name="action">Login</button>
     </div>

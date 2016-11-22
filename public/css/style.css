@@ -78,6 +78,7 @@ footer{
   left: 0;
   padding: .5rem;
 }
+
 nav{
   box-shadow: 2px 2px 1px black;
   height: 80px;
@@ -86,4 +87,22 @@ nav{
   top: 0;
   left: 0;
   z-index: 10;
+}
+
+.trans-background{
+  border: 1px solid black;
+  background-color: black;
+  opacity: 0.6;
+  width: 400px;
+  border-radius: 15px;
+  padding-bottom: .5em;
+}
+
+.form-trans{
+  border: 1px solid black;
+  background-color: black;
+  opacity: 0.6;
+  /*width: 800px;*/
+  border-radius: 20px;
+  padding: .5em;
 }

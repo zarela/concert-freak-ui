@@ -1,44 +1,43 @@
 <div class="empty"></div>
-<div class="empty"></div>
+<br>
 
 <div class="container center">
   <div class="nav">
     <div ng-show="main.isCreating">
       <div class="tracking">
-        <p>NOW TRACKING:</p><br>
+        <h5>NOW TRACKING:</h5><br>
       </div>
-      <em>{{main.newEvent.artist}}</em><br>
+      <em>{{main.newEvent.artist}}</em><br><br>
     </div>
   </div>
 
 <div ng-show="main.isCreating">
   <form class="col s6" ng-submit="main.addEvent(main.newEvent)">
-    <div>
-      <label for="artist">Artist</label>
-      <input type="text" ng-model="main.newEvent.artist">
-    </div>
-    <div>
-      <label for="date">Date</label>
-      <input type="text" ng-model="main.newEvent.date">
-    </div>
-    <div>
-      <label for="price">Tiket Price</label>
-      <input type="text" ng-model="main.newEvent.price">
-    </div>
-    <div>
-      <label for="url">Event Url</label>
-      <input type="text" ng-model="main.newEvent.url">
-    </div>
-    <div>
-      <label for="location">Venue</label>
-      <input type="text" ng-model="main.newEvent.location">
+    <div class="form-trans">
+      <div>
+        <label for="artist">Artist</label>
+        <input type="text" ng-model="main.newEvent.artist">
+      </div>
+      <div>
+        <label for="date">Date</label>
+        <input type="text" ng-model="main.newEvent.date">
+      </div>
+      <div>
+        <label for="price">Tiket Price</label>
+        <input type="text" ng-model="main.newEvent.price">
+      </div>
+      <div>
+        <label for="url">Event Url</label>
+        <input type="text" ng-model="main.newEvent.url">
+      </div>
+      <div>
+        <label for="location">Venue</label>
+        <input type="text" ng-model="main.newEvent.location">
+      </div>
     </div>
   <div>
-
-      <!-- <input type="checkbox" ng-model="main.newEvent" value="true" checked>
-      <label for="rsvp">RSVP</label> -->
 </div>
-<br><br>
+<br>
 <button class="#311b92 deep-purple darken-4 btn" type="submit">Add Event</button>
 </form>
 
