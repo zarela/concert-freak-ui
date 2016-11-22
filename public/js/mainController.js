@@ -6,8 +6,36 @@
 
   function MainCtrl($http, $state, $scope){
     var self = this;
-    var rootUrl = "http://localhost:3000";
-    // var rootUrl = "https://concert-freak-api.herokuapp.com";
+    // var rootUrl = "http://localhost:3000";
+    var rootUrl = "https://concert-freak-api.herokuapp.com";
+
+    //*************
+    // this.currentUser = function() {
+    //   return $http({
+    //     url: `${rootUrl}/users/current-user`,
+    //     method: 'GET',
+    //     headers: {'Authorization': `Bearer ${JSON.stringify(localStorage.getItem('token'))}`}
+    //   })
+    //   .then(function(response) {
+    //     self.user = response.data.user;
+    //     self.id = response.data.user.id;
+    //     console.log(self.user, 'currentUser function');
+    //   })
+    //   .then(function(response) {
+    //     return $http({
+    //       url: `${rootUrl}/users/${self.id}/rsvps`,
+    //       method: 'GET'
+    //     })
+    //   })
+    //   .then(function(response) {
+    //     console.log(response);
+    //     self.rsvps = response.data.rsvps;
+    //   })
+    //   .catch(function(err) {
+    //     console.log(err);
+    //   })
+    // }
+    //*************
 
     //USER SIGNUP
     this.signup = function(user) {
@@ -61,6 +89,7 @@
         console.log('Token ~>', response.data.token);
         localStorage.setItem('token', JSON.stringify(response.data.token))
         localStorage.setItem('user', JSON.stringify(response.data.user));
+        localStorage.setItem('userid', JSON.stringify(response.data.user.id));
         //GETTING RSVP EVENTS
         // return $http.get(`${rootUrl}/users/${self.id}/rsvps`);
         return $http.get(`${rootUrl}/users`);
@@ -86,12 +115,14 @@
     //Adding RSVP
     this.addToMyRsvps = function(id){
       console.log("Hello from RSVP", id);
-      localStorage.getItem('token');
-      $http.post (`${rootUrl}/users/${self.id}/rsvps`, {rsvp: id})
+      var uid= localStorage.getItem('userid');
+      console.log(uid);
+      $http.post (`${rootUrl}/users/${uid}/rsvps`, {rsvp: id})
       .then(function(response){
         console.log("From ADDING RSVPS", response);
       })
     }
+
 
     /*
       thid.addToMyInterests = function(id){
@@ -145,9 +176,8 @@
         console.log("Response", response);
         self.event = response.data.event;
         self.events.push(newEvent);
-        //Clearing form ''
-        console.log("Clearing form");
-        self.newEvent ="";
+        // console.log("Clearing form");
+        self.newEvent =""; //Clearing form
         $state.go('events', {url:'events', events: response.data});
       })
       .catch(function(err){
@@ -171,18 +201,15 @@
 
   //UPDATE EVENT
   function editEvent(event){
-    // console.log('Hello from editing',event)
     $http.put(`${rootUrl}/events/${event.id}`, event)
     .then(function(response){
       console.log(response);
-      // self.events = response.data.events;
       self.isEditing = false;
       $state.go('events');
     })
     .catch(function(err){
       console.log(err)
     });
-
   }
 
   //Public Methods
