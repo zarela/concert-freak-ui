@@ -124,16 +124,6 @@
     }
 
 
-    /*
-      thid.addToMyInterests = function(id){
-
-      // update Interests table on SERVER
-      //something like POST to /users/:user_id/interests
-
-      // update self.myInterests
-    }
-    */
-
     // EVENTS STATE
     //=============
     // SHOWING ALL THE EVENTS
