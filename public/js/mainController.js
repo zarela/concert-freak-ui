@@ -6,8 +6,8 @@
 
   function MainCtrl($http, $state, $scope){
     var self = this;
-    // var rootUrl = "http://localhost:3000";
-    var rootUrl = "https://concert-freak-api.herokuapp.com";
+    var rootUrl = "http://localhost:3000";
+    // var rootUrl = "https://concert-freak-api.herokuapp.com";
 
     //*************
     // this.currentUser = function() {
@@ -119,7 +119,10 @@
       console.log(uid);
       $http.post (`${rootUrl}/users/${uid}/rsvps`, {rsvp: id})
       .then(function(response){
+        self.rsvps = response.data.rsvps;
         console.log("From ADDING RSVPS", response);
+        console.log(response.data.rsvps);
+
       })
     }
 

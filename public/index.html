@@ -8,7 +8,6 @@
   <script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"></script>
-  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
   <link rel="stylesheet" href="css/style.css">
@@ -19,30 +18,24 @@
 
   <nav class="#311b92 deep-purple darken-4">
     <div class="nav-fix">
-      <a href="#" id="logo" class="brand-logo hide-on-small-only">Concert Freak</a>
-      <!-- <ul id="nav-mobile" class="right small-and-down"> -->
+      <a href="#" id="logo" class="brand-logo hide-on-small-only"><img src="http://i.imgur.com/pT8fc7Y.png" style="width:480px;" ui-sref="home" /></a>
       <ul id="nav-mobile" class="right">
-        <li><a ui-sref-active="active" ui-sref="home">Home</a></li>
-        <li><a ui-sref-active="active" ui-sref="login">Login</a></li>
-        <li><a ui-sref-active="active" ui-sref="user">My Page</a></li>
-        <li><a ui-sref-active="active" ui-sref="events">Events</a></li>
+        <li><a ui-sref-active="active" ui-sref="home">HOME</a></li>
+        <li><a ui-sref-active="active" ui-sref="login">LOGIN</a></li>
+        <li><a ui-sref-active="active" ui-sref="user">MY PAGE</a></li>
+        <li><a ui-sref-active="active" ui-sref="events">EVENTS</a></li>
       </ul>
     </div>
   </nav>
-
-  <!-- <nav>
-    <button ui-sref="login">login </button>
-    <button ui-sref="signup">signup</button>
-    <button ng-click="auth.logout()">logout</button>
-    <button ui-sref="addTodo">Add Todo!</button>
-    <button ui-sref="allTodos">Todos</button>
-  </nav> -->
-  <!-- <div ng-show="auth.user">Welcome {{auth.user.username}}!</div> -->
 
   <div ng-controller="MainCtrl as main">
     <!-- {{1+1}} -->
     <main ui-view></main>
   </div>
-
+  <div class="empty"></div><div class="empty"></div>
 </body>
+<footer>
+  <img src="http://i.imgur.com/MGliyWA.png" style="width:60px;" ui-sref="home"/><br>
+  Created by &#10084; Zarela G.
+</footer>
 </html>

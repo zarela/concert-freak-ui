@@ -21,7 +21,7 @@ input{
 }
 
 #logo{
-  padding-left: .3em;
+  padding-left: .2em;
 }
 
 .events {
@@ -46,7 +46,7 @@ input{
 }
 
 .search[type=text] {
-  font-size: 12px;
+  font-size: 20px;
   width: 300px;
   -webkit-transition: width 0.4s ease-in-out;
   transition: width 0.4s ease-in-out;
@@ -60,6 +60,25 @@ input{
 }
 
 #home {
-  background: url('https://i.imgur.com/0YCVhf1.jpg');
+  /*background: url('https://i.imgur.com/0YCVhf1.jpg');*/
+  background: url('http://i.imgur.com/WOEQOmG.jpg');
   background-size: cover;
+}
+
+footer{
+  background-color: #311b92;
+  color: #fcfce8;
+	text-align: center;
+  padding: 1em;
+  font-size: 16px;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: .5rem;
+}
+nav{
+  height: 80px;
+  padding-top: .5em;
+  position: fixed;
 }
