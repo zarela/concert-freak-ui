@@ -8,12 +8,13 @@
 }
 
 body{
-  background-color: papayawhip;
+  /*background-color: papayawhip;*/
   color:white;
 }
 
 .btn{
   border-radius: 5px;
+  box-shadow: 3px 3px 1px black;
 }
 
 input{
@@ -21,7 +22,7 @@ input{
 }
 
 #logo{
-  padding-left: .2em;
+  padding-left: .1em;
 }
 
 .events {
@@ -39,10 +40,10 @@ input{
   font-weight: 600;
   line-height: 16px;
   letter-spacing: .1rem;
-  border: 2px solid #1f3461;
+  border: 2px solid #311b92;
   border-radius: 10px;
   padding: 1em;
-  box-shadow: 5px 5px 3px #888888;
+  box-shadow: 5px 5px 3px black;
 }
 
 .search[type=text] {
@@ -78,7 +79,11 @@ footer{
   padding: .5rem;
 }
 nav{
+  box-shadow: 2px 2px 1px black;
   height: 80px;
   padding-top: .5em;
   position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
 }
