@@ -10,7 +10,7 @@ ERD Modeling ![alt tag](http://i.imgur.com/PoTQfi5.png)
 
 ## Original Wireframe
 
-Original Wireframe ![alt tag](https://drive.google.com/file/d/0B9p6hJKmZMZEbDQ2ZGpjOXhfYlE/view?usp=sharing)
+[Original Wireframe](https://drive.google.com/file/d/0B9p6hJKmZMZEbDQ2ZGpjOXhfYlE/view?usp=sharing)
 
 ## Backend Repo
 
