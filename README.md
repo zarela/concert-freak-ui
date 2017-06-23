@@ -14,4 +14,4 @@ Original Wireframe ![alt tag](https://drive.google.com/file/d/0B9p6hJKmZMZEbDQ2Z
 
 ## Backend Repo
 
-https://github.com/zarela/concert-freak-apigit
+https://github.com/zarela/concert-freak-apigitatom
